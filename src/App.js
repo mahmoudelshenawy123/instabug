@@ -5,13 +5,14 @@ import InstabugLogin from './InstabugLogin';
 import Welcome from './Welcome';
 import { AuthProvider } from './auth';
 import { RequireAuth } from './RequireAuth';
+import { Authed } from './Authed';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<InstabugLogin/>}></Route>
+          <Route path="/" element={<Authed><InstabugLogin/></Authed>}></Route>
           <Route path="/Welcome" element={<RequireAuth><Welcome/></RequireAuth>}></Route>
           <Route path="*" element={<Error/>}></Route>
         </Routes>
