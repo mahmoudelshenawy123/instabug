@@ -20,7 +20,7 @@ function LoginSlider() {
             sliderImgs[sliderActiveImg].classList.add('active')
             sliderImgsDots[sliderActiveImg].classList.add('active')
 
-        } ,3000)
+        } ,2000)
     }
     useEffect(()=>{changeSliderImg()},[])
     return (

@@ -63,7 +63,7 @@ function LoginForm() {
         // console.log(auth);
         if(loginIndex!=-1){
             auth.login(loginData.email)
-            navigate('/Welcome')
+            navigate('/Welcome' ,{replace:true})
             wrongEmailPassRef.current.classList.add('hidden')
         }else{
             wrongEmailPassRef.current.classList.remove('hidden')
