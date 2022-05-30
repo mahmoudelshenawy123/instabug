@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router';
-import {ReactComponent as LogoSvg} from './assets/imgs/instaLogo.svg'
-import {ReactComponent as MicrosoftSvg} from './assets/imgs/Microsoft.svg'
-import {ReactComponent as GoogleSvg} from './assets/imgs/google.svg'
-import {ReactComponent as GithubSvg} from './assets/imgs/github.svg'
+import { useAuth } from './auth';
+
 // import {ReactComponent as CloseIcon} from '../assets/imgs/closeIcon.svg'
 import jsonData from './emails.json';
+import LoginFormContent from './LoginFormContent';
 function LoginForm() {
     let navigate =useNavigate()
     const [loginData ,setLoginData] =useState({email:null,password:null})
@@ -18,6 +17,8 @@ function LoginForm() {
 
     const wrongEmailPassRef=useRef(null)
     
+    const auth = useAuth()
+
     const addLoginData =(e)=>{
         setLoginData((prevState)=>{
             return{
@@ -59,32 +60,22 @@ function LoginForm() {
                 return true;
             }
         })
-
+        // console.log(auth);
         if(loginIndex!=-1){
+            auth.login(loginData.email)
             navigate('/Welcome')
             wrongEmailPassRef.current.classList.add('hidden')
         }else{
             wrongEmailPassRef.current.classList.remove('hidden')
         }
-        console.log(jsonData)
-        console.log(loginIndex)
     }
   return (
     <div className='login__form'>
-        <div className='login__logo-cont'>
-            <LogoSvg> </LogoSvg>
-        </div>
-        <h1 className='login__heading'>Log in To Instabug</h1>
-        <div className='login__links-cont'>
-            <a href='#' className='login__links login__links--google'><GoogleSvg className='login__links-svg login__links-svg--bg-white'/><span className='login__links-span'>Google</span></a>
-            <a href='#' className='login__links login__links--GitHub'><GithubSvg className='login__links-svg'/><span className='login__links-span'>GitHub</span></a>
-            <a href='#' className='login__links login__links--Micrsoft'><MicrosoftSvg className='login__links-svg'/><span className='login__links-span'>Micrsoft</span></a>
-        </div>
-        <div className='login__OR'>OR</div>
-        <div className='login__invalid-emai-password hidden' ref={wrongEmailPassRef}>
-            Your Email and/or password are incorrect
-        </div>
+        <LoginFormContent/>
         <form onSubmit={(e)=>{SendData(e)}}>
+            <div className='login__invalid-emai-password hidden' ref={wrongEmailPassRef}>
+                Your Email and/or password are incorrect
+            </div>
             <div className='login__input-cont'>
                 <div className='login__forget-cont'>
                     <label htmlFor='login__email' className='login__label'>Work Email</label>
@@ -97,7 +88,7 @@ function LoginForm() {
                     <label htmlFor='login__password' className='login__label'>Work Password</label>
                     <a href='' className='login__forget'>Forget Password?</a>
                 </div>
-                <input type="password" name="password" id ='login__password' className='login__form-password login__form-input' ref={passwordRef} onInput={(e)=>{addLoginData(e);checkValidPassword()}} placeholder='8+ Characters'/>
+                <input type="password" name="password" id ='login__password' className='login__form-password login__form-input' ref={passwordRef} onInput={(e)=>{addLoginData(e);checkValidPassword()}} placeholder='6+ Characters'/>
                 <label htmlFor='login__password' ref={passwordLabelRef} className='login__input-eror hidden'>Password must be 6 characters or more</label>
             </div>
             <button type='submit' className='login__submit disabled' ref={submitButtonRef} disabled>Log in</button>

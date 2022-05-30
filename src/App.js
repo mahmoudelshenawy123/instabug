@@ -3,20 +3,21 @@ import './App.css';
 import Error from './Error';
 import InstabugLogin from './InstabugLogin';
 import Welcome from './Welcome';
+import { AuthProvider } from './auth';
+import { RequireAuth } from './RequireAuth';
 
 function App() {
   return (
-    <div className="App">
-      <div className='outer'>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/InstabugLogin" element={<InstabugLogin/>}></Route>
-              <Route path="/Welcome" element={<Welcome/>}></Route>
-              <Route path="*" element={<Error/>}></Route>
-            </Routes>
-          </BrowserRouter>
-        </div>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<InstabugLogin/>}></Route>
+          <Route path="/Welcome" element={<RequireAuth><Welcome/></RequireAuth>}></Route>
+          <Route path="*" element={<Error/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+
   );
 }
 
