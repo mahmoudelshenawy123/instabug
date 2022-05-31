@@ -73,7 +73,7 @@ function LoginForm() {
     <div className='login__form'>
         <LoginFormContent/>
         <form onSubmit={(e)=>{SendData(e)}}>
-            <div className='login__invalid-emai-password hidden' ref={wrongEmailPassRef}>
+            <div className='login__invalid-emai-password hidden' ref={wrongEmailPassRef} id=''>
                 Your Email and/or password are incorrect
             </div>
             <div className='login__input-cont'>
@@ -81,12 +81,12 @@ function LoginForm() {
                     <label htmlFor='login__email' className='login__label'>Work Email</label>
                 </div>
                 <input type="email" name="email" id ='login__email' className='login__form-email login__form-input' ref={emailRef} onInput={(e)=>{addLoginData(e);checkValidEmail()}} placeholder='you@company.com'/>
-                <label htmlFor='login__password' ref={emailLabelRef} className='login__input-eror hidden'>Enter a valid email address</label>
+                <label htmlFor='login__email' ref={emailLabelRef} className='login__input-eror hidden'>Enter a valid email address</label>
             </div>
             <div className='login__input-cont'>
                 <div className='login__forget-cont'>
                     <label htmlFor='login__password' className='login__label'>Work Password</label>
-                    <a href='' className='login__forget'>Forget Password?</a>
+                    <a href='#' className='login__forget'>Forget Password?</a>
                 </div>
                 <input type="password" name="password" id ='login__password' className='login__form-password login__form-input' ref={passwordRef} onInput={(e)=>{addLoginData(e);checkValidPassword()}} placeholder='6+ Characters'/>
                 <label htmlFor='login__password' ref={passwordLabelRef} className='login__input-eror hidden'>Password must be 6 characters or more</label>

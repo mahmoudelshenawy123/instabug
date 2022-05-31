@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import  slider  from './assets/imgs/1.png';
-import  slider1  from './assets/imgs/2.png';
-import  slider2  from './assets/imgs/3.png';
+import slider from './assets/imgs/1.png';
+import slider1  from './assets/imgs/2.png';
+import slider2  from './assets/imgs/3.png';
 
 function LoginSlider() {
     const changeSliderImg = ()=>{
@@ -20,7 +20,7 @@ function LoginSlider() {
             sliderImgs[sliderActiveImg].classList.add('active')
             sliderImgsDots[sliderActiveImg].classList.add('active')
 
-        } ,2000)
+        } ,3000)
     }
     useEffect(()=>{changeSliderImg()},[])
     return (
@@ -46,7 +46,7 @@ function LoginSlider() {
             </div>
         </div>
         <div className='login__slider-nav'>
-            <span className='login__slider-dots active'></span>
+            <span className='login__slider-dots active'>ss</span>
             <span className='login__slider-dots'></span>
             <span className='login__slider-dots'></span>
         </div>
