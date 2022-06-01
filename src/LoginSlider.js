@@ -46,7 +46,7 @@ function LoginSlider() {
             </div>
         </div>
         <div className='login__slider-nav'>
-            <span className='login__slider-dots active'>ss</span>
+            <span className='login__slider-dots active'></span>
             <span className='login__slider-dots'></span>
             <span className='login__slider-dots'></span>
         </div>
